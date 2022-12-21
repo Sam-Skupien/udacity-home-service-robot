@@ -1,6 +1,7 @@
 #include <ros/ros.h>
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
+#include <tf/tf.h>
 
 // Define a client for to send goal requests to the move_base server through a SimpleActionClient
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
@@ -24,13 +25,10 @@ int main(int argc, char** argv){
   goal.target_pose.header.stamp = ros::Time::now();
 
   // Define a position and orientation for the robot to reach
-  //goal.target_pose.pose.position.x = 5.0;
-  //goal.target_pose.pose.position.y = 10.0;
-  //goal.target_pose.pose.orientation.w = 0;
 
-  goal.target_pose.pose.position.x = 1.0;
-  goal.target_pose.pose.position.y = 1.0;
-  //goal.target_pose.pose.orientation.w = 0.0;
+  goal.target_pose.pose.position.x = 31.0;
+  goal.target_pose.pose.position.y = 26.0;
+  goal.target_pose.pose.orientation = tf::createQuaternionMsgFromYaw(1.57);
 
    // Send the goal position and orientation for the robot to reach
   ROS_INFO("Sending goal");
@@ -48,13 +46,9 @@ int main(int argc, char** argv){
   ros::Duration(5.0).sleep();
 
   // Define a second position and orientation for the robot to reach
-  //goal.target_pose.pose.position.x = 0.0;
-  //goal.target_pose.pose.position.y = 25.0;
-  //goal.target_pose.pose.orientation.w = 0.0;
-
-  goal.target_pose.pose.position.x = 2.0;
-  goal.target_pose.pose.position.y = 2.0;
-  //goal.target_pose.pose.orientation.w = 0.0;
+  goal.target_pose.pose.position.x = 29.0;
+  goal.target_pose.pose.position.y = 19.0;
+  goal.target_pose.pose.orientation = tf::createQuaternionMsgFromYaw(1.57);
 
   // Send the goal position and orientation for the robot to reach
   ROS_INFO("Sending second goal");
