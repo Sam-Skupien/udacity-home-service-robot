@@ -88,12 +88,11 @@ int main( int argc, char** argv )
        ROS_INFO_STREAM("Moving towards object. Current x: " << globalCBx << " Current y: " << globalCBy);
 ros::spinOnce();
     }
+    ros::Duration(5.0).sleep();
     ROS_INFO("Picked up object!");
 
     marker.action = visualization_msgs::Marker::DELETE;
     marker_pub.publish(marker);
-
-    ros::Duration(5.0).sleep();
 
     marker.pose.position.x = 29.0;
     marker.pose.position.y = 19.0;
